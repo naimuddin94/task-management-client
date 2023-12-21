@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import loginImage from "../../../public/2007.i039.019_cyber_security_spyware_data_protection_isometric_set-06-removebg-preview.png";
-import { FaGoogle } from "react-icons/fa";
+import SocialLogin from "../../components/shared/SocialLogin";
 
 const Login = () => {
   return (
@@ -35,19 +36,16 @@ const Login = () => {
           <label className="label">
             <p className="label-text-alt ">
               Are you new to here?{" "}
-              <span className="link link-hover ml-1">Register</span>
+              <Link to="/register">
+                <span className="link link-hover ml-1">Register</span>
+              </Link>
             </p>
           </label>
           <div className="form-control mt-6">
             <button className="btn btn-accent">Login</button>
           </div>
         </form>
-        <div className="px-8 pb-5">
-          <button className="btn btn-primary btn-block text-slate-200">
-            <FaGoogle />
-            Login with google
-          </button>
-        </div>
+        <SocialLogin />
       </div>
     </div>
   );
