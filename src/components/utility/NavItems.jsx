@@ -1,8 +1,15 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import useAuthInfo from "../../hooks/useAuthInfo";
 
 const NavItems = () => {
+  const navigate = useNavigate();
   const { user, logoutUser } = useAuthInfo();
+
+  const handleLogout = () => {
+    logoutUser().then(() => {
+      navigate("/");
+    });
+  };
   return (
     <>
       <li>
@@ -15,7 +22,7 @@ const NavItems = () => {
         <NavLink to="/notifications">Notifications</NavLink>
       </li>
       {user ? (
-        <button onClick={logoutUser} className="btn btn-sm btn-accent">
+        <button onClick={handleLogout} className="btn btn-sm btn-accent">
           Logout
         </button>
       ) : (

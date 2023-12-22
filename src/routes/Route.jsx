@@ -8,6 +8,7 @@ import Dashboard from "../pages/dashboard/Dashboard";
 import OngoingTasks from "../pages/dashboard/OngoingTasks";
 import CompleteTasks from "../pages/dashboard/CompleteTasks";
 import Profile from "../pages/dashboard/Profile";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -28,23 +29,43 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: (
+          <PrivateRoute>
+            <DashboardLayout />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "/dashboard",
-            element: <Dashboard />,
+            element: (
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/ongoingTasks",
-            element: <OngoingTasks />,
+            element: (
+              <PrivateRoute>
+                <OngoingTasks />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/completeTasks",
-            element: <CompleteTasks />,
+            element: (
+              <PrivateRoute>
+                <CompleteTasks />
+              </PrivateRoute>
+            ),
           },
           {
             path: "/dashboard/profile",
-            element: <Profile />,
+            element: (
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            ),
           },
         ],
       },

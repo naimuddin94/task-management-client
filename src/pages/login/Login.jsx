@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import loginImage from "../../../public/2007.i039.019_cyber_security_spyware_data_protection_isometric_set-06-removebg-preview.png";
 import SocialLogin from "../../components/shared/SocialLogin";
 import { useForm } from "react-hook-form";
@@ -6,6 +6,8 @@ import useAuthInfo from "../../hooks/useAuthInfo";
 import { toast } from "react-toastify";
 
 const Login = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { loginUser, loading, setLoading } = useAuthInfo();
   const { register, handleSubmit } = useForm();
 
@@ -13,6 +15,7 @@ const Login = () => {
     loginUser(data.email, data.password)
       .then(() => {
         toast.success(`🎉 Welcome to task minder`);
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         const message = error.code.replace(/auth\//, "").replace(/-/g, " ");
