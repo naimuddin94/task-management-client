@@ -15,6 +15,8 @@ const AuthProvider = ({ children }) => {
   const [photo, setPhoto] = useState("");
   const [loading, setLoading] = useState(true);
 
+  console.log(user);
+
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
