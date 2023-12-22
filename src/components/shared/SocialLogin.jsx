@@ -2,8 +2,11 @@ import { FaGoogle } from "react-icons/fa";
 import { toast } from "react-toastify";
 import useAuthInfo from "../../hooks/useAuthInfo";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SocialLogin = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const axiosSecure = useAxiosSecure();
   const { googleLogin, setLoading, setName, setPhoto } = useAuthInfo();
   const handleGoogleLogin = () => {
@@ -19,11 +22,11 @@ const SocialLogin = () => {
             setName(name);
             setPhoto(photo);
             toast.success(`🎉 welcome ${result?.user?.displayName}`);
+            navigate(location.state ? location.state : "/");
           })
           .catch((err) => {
             console.log(err.message);
           });
-        
       })
       .catch((error) => {
         const message = error.code.replace(/auth\//, "").replace(/-/g, " ");

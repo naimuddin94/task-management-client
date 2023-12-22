@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import image from "/public/Email_Security_-_546x372.png";
 import SocialLogin from "../../components/shared/SocialLogin";
 import { useForm } from "react-hook-form";
@@ -9,6 +9,8 @@ import ImageUpload from "../../lib/ImageUpload";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const axiosSecure = useAxiosSecure();
   const { createUser, setName, setPhoto } = useAuthInfo();
   const {
@@ -34,6 +36,7 @@ const Register = () => {
                 setName(name);
                 setPhoto(photo);
                 toast.success("Account created 🎉");
+                navigate(location.state ? location.state : "/");
               })
               .catch((err) => {
                 console.log(err.message);
@@ -42,7 +45,7 @@ const Register = () => {
           .catch((error) => {
             const message = error.code.replace(/auth\//, "").replace(/-/g, " ");
             toast.error(message);
-          })
+          });
       })
       .catch((error) => {
         const message = error.code.replace(/auth\//, "").replace(/-/g, " ");
