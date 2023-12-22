@@ -5,11 +5,11 @@ import SocialLogin from "../../components/shared/SocialLogin";
 const Register = () => {
   return (
     <div>
-      <div className="card shrink-0 w-full max-w-3xl mx-auto shadow-sm shadow-accent/30 bg-base-200 relative my-8">
+      <div className="card shrink-0 w-full max-w-3xl mx-auto shadow-sm shadow-accent/30 bg-base-200 relative my-4">
         <img
           src={image}
           alt="secure image"
-          className="absolute right-5 bottom-5 w-80"
+          className="absolute right-5 bottom-5 w-80 hidden md:block"
         />
         <form className="card-body ">
           <h2 className="text-4xl font-bold text-center">Register</h2>
