@@ -10,7 +10,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
   const axiosSecure = useAxiosSecure();
-  const { createUser, setName, setPhoto, setLoading } = useAuthInfo();
+  const { createUser, setName, setPhoto } = useAuthInfo();
   const {
     register,
     handleSubmit,
@@ -43,9 +43,6 @@ const Register = () => {
             const message = error.code.replace(/auth\//, "").replace(/-/g, " ");
             toast.error(message);
           })
-          .finally(() => {
-            setLoading(false);
-          });
       })
       .catch((error) => {
         const message = error.code.replace(/auth\//, "").replace(/-/g, " ");
