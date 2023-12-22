@@ -6,9 +6,11 @@ import useAuthInfo from "../../hooks/useAuthInfo";
 import { toast } from "react-toastify";
 import { updateProfile } from "firebase/auth";
 import ImageUpload from "../../lib/ImageUpload";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const Register = () => {
-  const { createUser, setName, setPhoto } = useAuthInfo();
+  const axiosSecure = useAxiosSecure();
+  const { createUser, setName, setPhoto, setLoading } = useAuthInfo();
   const {
     register,
     handleSubmit,
@@ -18,7 +20,6 @@ const Register = () => {
   const onSubmit = async (data) => {
     const { name, photoFile, email, password } = data;
     const photo = await ImageUpload(photoFile[0]);
-    console.log(photo);
     createUser(email, password)
       .then((result) => {
         updateProfile(result.user, {
@@ -26,13 +27,24 @@ const Register = () => {
           photoURL: photo,
         })
           .then(() => {
-            setName(name);
-            setPhoto(photo);
-            toast.success("Account created 🎉");
+            axiosSecure
+              .post("/users/create", { name, email, photo })
+              .then((res) => {
+                console.log(res);
+                setName(name);
+                setPhoto(photo);
+                toast.success("Account created 🎉");
+              })
+              .catch((err) => {
+                console.log(err.message);
+              });
           })
           .catch((error) => {
             const message = error.code.replace(/auth\//, "").replace(/-/g, " ");
             toast.error(message);
+          })
+          .finally(() => {
+            setLoading(false);
           });
       })
       .catch((error) => {
