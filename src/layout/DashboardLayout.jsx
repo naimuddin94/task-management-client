@@ -1,12 +1,12 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import Sidebar from "../pages/dashboard/Sidebar";
 
 const DashboardLayout = () => {
   return (
     <>
-      <div className="grid grid-cols-12">
-        <Sidebar/>
-        <div className="grid-cols-10">
+      <div className="md:grid grid-cols-12">
+        <Sidebar />
+        <div className="col-span-10">
           <Outlet />
         </div>
       </div>

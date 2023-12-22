@@ -13,12 +13,15 @@ const Sidebar = () => {
           <h1 className="text-gray-700 font-semibold">Abdul Kalam</h1>
         </div>
         <div className="flex flex-col gap-2">
-          <DashboardLink path="/allTasks" label="All Tasks" />
-          <DashboardLink path="/ongoingTasks" label="Ongoing Tasks" />
-          <DashboardLink path="/completeTasks" label="Complete Tasks" />
+          <DashboardLink path="/dashboard" label="All Tasks" />
+          <DashboardLink path="/dashboard/ongoingTasks" label="Ongoing Tasks" />
+          <DashboardLink
+            path="/dashboard/completeTasks"
+            label="Complete Tasks"
+          />
         </div>
         <div className="flex flex-col">
-          <DashboardLink path="/profile" label="Profile" />
+          <DashboardLink path="/dashboard/profile" label="Profile" />
         </div>
       </ul>
     </div>

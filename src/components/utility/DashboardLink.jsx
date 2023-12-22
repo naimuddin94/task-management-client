@@ -1,11 +1,20 @@
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const DashboardLink = ({ path, label }) => {
+  const { pathname } = useLocation();
+  console.log(pathname);
   return (
-    <NavLink to={path} className={({ isActive }) => (isActive ? "bg-rose-600" : "bg-gray-800 py-2 rounded text-center font-medium hover:bg-gray-700")}>
+    <Link
+      to={path}
+      className={`py-2 rounded text-center font-medium ${
+        path === pathname
+          ? "bg-rose-500 text-gray-800"
+          : "hover:bg-gray-700 bg-gray-800"
+      }`}
+    >
       {label}
-    </NavLink>
+    </Link>
   );
 };
 
