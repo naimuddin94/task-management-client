@@ -9,6 +9,7 @@ import OngoingTasks from "../pages/dashboard/OngoingTasks";
 import CompleteTasks from "../pages/dashboard/CompleteTasks";
 import Profile from "../pages/dashboard/Profile";
 import PrivateRoute from "./PrivateRoute";
+import IncompleteTasks from "../pages/dashboard/IncompleteTasks";
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: "/dashboard/incompleteTasks",
+            element: (
+              <PrivateRoute>
+                <IncompleteTasks />
               </PrivateRoute>
             ),
           },

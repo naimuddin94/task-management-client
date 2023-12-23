@@ -17,6 +17,7 @@ const Sidebar = () => {
         </div>
         <div className="flex flex-col gap-2">
           <DashboardLink path="/dashboard" label="All Tasks" />
+          <DashboardLink path="/dashboard/incompleteTasks" label="Incomplete" />
           <DashboardLink path="/dashboard/ongoingTasks" label="Ongoing Tasks" />
           <DashboardLink
             path="/dashboard/completeTasks"

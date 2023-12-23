@@ -39,6 +39,7 @@ const Dashboard = () => {
       .then((res) => {
         if (res.status === 201) {
           refetch();
+          reset();
           toast.success("✏️ Task added successfully");
         }
       })
@@ -60,8 +61,10 @@ const Dashboard = () => {
       axiosSecure
         .put(`/tasks/update/${taskId}`, { status })
         .then((res) => {
-          refetch();
-          console.log(res);
+          if (res.status === 200) {
+            toast.success(`Task ${status}`);
+            refetch();
+          }
         })
         .catch((err) => {
           console.log(err.message);
@@ -98,7 +101,7 @@ const Dashboard = () => {
             className={`h-[calc(100vh-68px)] overflow-y-auto scrollbar flex-1 md:pb-28 ${styles.scrollbar_hide}`}
           >
             {incompleteTask?.map((task) => (
-              <TaskCard key={task._id} task={task} />
+              <TaskCard key={task._id} task={task} refetch={refetch} />
             ))}
           </div>
           <div
@@ -109,7 +112,7 @@ const Dashboard = () => {
             className={`h-[calc(100vh-68px)] overflow-y-auto scrollbar flex-1 md:pb-28 ${styles.scrollbar_hide}`}
           >
             {ongoingTask?.map((task) => (
-              <TaskCard key={task._id} task={task} />
+              <TaskCard key={task._id} task={task} refetch={refetch} />
             ))}
           </div>
           <div
@@ -120,7 +123,7 @@ const Dashboard = () => {
             className={`h-[calc(100vh-68px)] overflow-y-auto scrollbar flex-1 md:pb-28 ${styles.scrollbar_hide}`}
           >
             {completeTask?.map((task) => (
-              <TaskCard key={task._id} task={task} />
+              <TaskCard key={task._id} task={task} refetch={refetch} />
             ))}
           </div>
         </div>
