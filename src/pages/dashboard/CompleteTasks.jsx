@@ -8,9 +8,9 @@ const CompleteTasks = () => {
   const completeTasks = tasks.filter((task) => task.status === "Completed");
 
   return (
-    <div className="md:p-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">
+    <div className="md:p-3">
       <div
-        className={`h-[calc(100vh-68px)] overflow-y-auto md:pb-28 ${styles.scrollbar_hide}`}
+        className={`h-[calc(100vh-68px)]  grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 overflow-y-auto md:pb-28 ${styles.scrollbar_hide}`}
       >
         {completeTasks?.map((task) => (
           <TaskCard key={task._id} task={task} />
