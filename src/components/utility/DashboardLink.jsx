@@ -3,7 +3,6 @@ import { Link, useLocation } from "react-router-dom";
 
 const DashboardLink = ({ path, label }) => {
   const { pathname } = useLocation();
-  console.log(pathname);
   return (
     <Link
       to={path}

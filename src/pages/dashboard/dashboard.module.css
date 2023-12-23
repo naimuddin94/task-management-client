@@ -1,0 +1,6 @@
+/* styles.css */
+
+/* Utility classes for hiding scrollbar */
+.scrollbar_hide::-webkit-scrollbar {
+  display: none;
+}

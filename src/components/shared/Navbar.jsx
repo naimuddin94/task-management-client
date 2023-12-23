@@ -31,7 +31,7 @@ const Navbar = () => {
         <a className="btn btn-ghost text-xl">TaskMinder</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
+        <ul className="menu menu-horizontal items-center px-1">
           <NavItems />
         </ul>
       </div>

@@ -1,6 +1,7 @@
 import { GiNotebook } from "react-icons/gi";
 
 import bannerImage from "/public/4912351-removebg-preview.png";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -14,7 +15,9 @@ const Banner = () => {
           TaskMinder keeps your tasks on track. Organize, set reminders, and
           tackle tasks efficiently with our personalized tool.
         </p>
-        <button className="btn btn-accent mt-4">Let’s Explore</button>
+        <Link to="/dashboard">
+          <button className="btn btn-accent mt-4">Let’s Explore</button>
+        </Link>
       </div>
       <div className="flex-1">
         <img src={bannerImage} alt="image by free pic" />
