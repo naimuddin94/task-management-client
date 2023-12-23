@@ -20,6 +20,10 @@ const Dashboard = () => {
     formState: { isSubmitting },
   } = useForm();
 
+  const incompleteTask = tasks.filter((task) => task.status === "To-Do");
+  const ongoingTask = tasks.filter((task) => task.status === "Ongoing");
+  const completeTask = tasks.filter((task) => task.status === "Completed");
+
   const onSubmit = (data) => {
     const userEmail = user?.email;
     const { title, description, deadline, priority } = data;
@@ -46,6 +50,25 @@ const Dashboard = () => {
       });
   };
 
+  const dropOver = (e) => {
+    e.preventDefault();
+  };
+
+  const dragDropped = (e, status) => {
+    const taskId = e.dataTransfer.getData("taskId");
+    if (taskId) {
+      axiosSecure
+        .put(`/tasks/update/${taskId}`, { status })
+        .then((res) => {
+          refetch();
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
+  };
+
   return (
     <>
       <div>
@@ -68,23 +91,35 @@ const Dashboard = () => {
         </div>
         <div className="h-[calc(100vh-68px)]  flex flex-col md:flex-row gap-2 px-5">
           <div
+            // eslint-disable-next-line react/no-unknown-property
+            droppable
+            onDragOver={dropOver}
+            onDrop={(e) => dragDropped(e, "To-Do")}
             className={`h-[calc(100vh-68px)] overflow-y-auto scrollbar flex-1 md:pb-28 ${styles.scrollbar_hide}`}
           >
-            {tasks?.map((task) => (
+            {incompleteTask?.map((task) => (
               <TaskCard key={task._id} task={task} />
             ))}
           </div>
           <div
+            // eslint-disable-next-line react/no-unknown-property
+            droppable
+            onDragOver={dropOver}
+            onDrop={(e) => dragDropped(e, "Ongoing")}
             className={`h-[calc(100vh-68px)] overflow-y-auto scrollbar flex-1 md:pb-28 ${styles.scrollbar_hide}`}
           >
-            {tasks?.map((task) => (
+            {ongoingTask?.map((task) => (
               <TaskCard key={task._id} task={task} />
             ))}
           </div>
           <div
+            // eslint-disable-next-line react/no-unknown-property
+            droppable
+            onDragOver={dropOver}
+            onDrop={(e) => dragDropped(e, "Completed")}
             className={`h-[calc(100vh-68px)] overflow-y-auto scrollbar flex-1 md:pb-28 ${styles.scrollbar_hide}`}
           >
-            {tasks?.map((task) => (
+            {completeTask?.map((task) => (
               <TaskCard key={task._id} task={task} />
             ))}
           </div>
