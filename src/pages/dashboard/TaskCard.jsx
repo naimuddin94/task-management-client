@@ -49,7 +49,7 @@ const TaskCard = ({ task, refetch }) => {
           <h4>{priority}</h4>
           <div className="flex items-center gap-2">
             <h4
-              className={`px-3 py-[2px] rounded-full w-fit ${
+              className={`px-3 py-[2px] font-medium rounded-full w-fit ${
                 status === "Completed"
                   ? "bg-emerald-500/50"
                   : status === "Ongoing"
@@ -73,7 +73,7 @@ const TaskCard = ({ task, refetch }) => {
 
 TaskCard.propTypes = {
   task: PropTypes.object.isRequired,
-  refetch: PropTypes.func,
+  refetch: PropTypes.func.isRequired,
 };
 
 export default TaskCard;
